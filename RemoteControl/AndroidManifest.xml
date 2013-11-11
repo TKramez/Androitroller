@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.cmich.cps396m.krame1tg.remotecontrol"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="12"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+<application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+        <activity android:name="edu.cmich.cps396m.krame1tg.remotecontrol.AddressSelection" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="edu.cmich.cps396m.krame1tg.remotecontrol.SelectConfiguration" android:label="@string/title_activity_select_configuration" android:parentActivityName="edu.cmich.cps396m.krame1tg.remotecontrol.AddressSelection">
+        </activity>
+
+        <service android:name="edu.cmich.cps396m.krame1tg.remotecontrol.RemoteControlService">
+        </service>
+
+        <activity android:name="edu.cmich.cps396m.krame1tg.remotecontrol.Controller" android:label="@string/title_activity_controller" android:screenOrientation="landscape">
+        </activity>
+        <activity android:name="edu.cmich.cps396m.krame1tg.remotecontrol.CustomizeConfig" android:label="@string/title_activity_customize_config">
+        </activity>
+    </application>
+
+</manifest>

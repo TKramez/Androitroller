@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">Remote Control</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="addressPrompt">Enter the IP Address displayed in the Remote Control Server on your computer</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_select_configuration">Select Configuration</string>
+    <string name="newConfig">New Configuration</string>
+    <string name="address">Address</string>
+    <string name="title_activity_controller">Controller</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="selectConfig">Select Config</string>
+    <string name="title_activity_customize_config">Customize Config</string>
+    <string name="play">Play</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="defaultButtonText">But</string>
+
+</resources>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnLEFT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnUP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnLEFT"
+        android:layout_toRightOf="@+id/btnLEFT"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnDOWN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnUP"
+        android:layout_below="@+id/btnLEFT"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnRIGHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnUP"
+        android:layout_toRightOf="@+id/btnUP"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnRIGHT"
+        android:layout_alignBottom="@+id/btnRIGHT"
+        android:layout_alignParentRight="true"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnB"
+        android:layout_toLeftOf="@+id/btnB"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnRIGHT"
+        android:layout_alignBottom="@+id/btnRIGHT"
+        android:layout_toLeftOf="@+id/btnY"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/btnA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnDOWN"
+        android:layout_alignBottom="@+id/btnDOWN"
+        android:layout_toRightOf="@+id/btnX"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/F4"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/F3"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/F2"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/F4"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/F5"
+        android:text="@string/defaultButtonText" />
+
+    <Button
+        android:id="@+id/F7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/F6"
+        android:text="@string/defaultButtonText" />
+
+</RelativeLayout>

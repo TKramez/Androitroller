@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-11-08T18:20:37</date>
+  <millis>1383952837284</millis>
+  <sequence>0</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer$1</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>Starting</message>
+</record>
+<record>
+  <date>2013-11-08T18:20:37</date>
+  <millis>1383952837436</millis>
+  <sequence>1</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Server</class>
+  <method>&lt;init&gt;</method>
+  <thread>13</thread>
+  <message>Server created.</message>
+</record>
+<record>
+  <date>2013-11-08T18:20:49</date>
+  <millis>1383952849735</millis>
+  <sequence>2</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:20:49</date>
+  <millis>1383952849740</millis>
+  <sequence>3</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:21:26</date>
+  <millis>1383952886072</millis>
+  <sequence>4</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:21:26</date>
+  <millis>1383952886073</millis>
+  <sequence>5</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:21:39</date>
+  <millis>1383952899403</millis>
+  <sequence>6</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:21:39</date>
+  <millis>1383952899405</millis>
+  <sequence>7</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:05</date>
+  <millis>1383952925487</millis>
+  <sequence>8</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:05</date>
+  <millis>1383952925489</millis>
+  <sequence>9</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:14</date>
+  <millis>1383952934883</millis>
+  <sequence>10</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:14</date>
+  <millis>1383952934884</millis>
+  <sequence>11</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:32</date>
+  <millis>1383952952330</millis>
+  <sequence>12</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:22:32</date>
+  <millis>1383952952331</millis>
+  <sequence>13</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:25:54</date>
+  <millis>1383953154708</millis>
+  <sequence>14</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:25:54</date>
+  <millis>1383953154710</millis>
+  <sequence>15</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:26:00</date>
+  <millis>1383953160844</millis>
+  <sequence>16</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:26:00</date>
+  <millis>1383953160846</millis>
+  <sequence>17</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:26:11</date>
+  <millis>1383953171281</millis>
+  <sequence>18</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:26:11</date>
+  <millis>1383953171283</millis>
+  <sequence>19</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:27:11</date>
+  <millis>1383953231544</millis>
+  <sequence>20</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:27:11</date>
+  <millis>1383953231545</millis>
+  <sequence>21</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:27:16</date>
+  <millis>1383953236486</millis>
+  <sequence>22</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:27:16</date>
+  <millis>1383953236487</millis>
+  <sequence>23</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:28:37</date>
+  <millis>1383953317427</millis>
+  <sequence>24</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:28:37</date>
+  <millis>1383953317429</millis>
+  <sequence>25</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:28:43</date>
+  <millis>1383953323474</millis>
+  <sequence>26</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>&lt;init&gt;</method>
+  <thread>16</thread>
+  <message>New Connection</message>
+</record>
+<record>
+  <date>2013-11-08T18:28:43</date>
+  <millis>1383953323474</millis>
+  <sequence>27</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User connected.</message>
+</record>
+<record>
+  <date>2013-11-08T18:29:03</date>
+  <millis>1383953343852</millis>
+  <sequence>28</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.Connection</class>
+  <method>close</method>
+  <thread>16</thread>
+  <message>Connection close.</message>
+</record>
+<record>
+  <date>2013-11-08T18:29:03</date>
+  <millis>1383953343853</millis>
+  <sequence>29</sequence>
+  <logger>Remote Control Server</logger>
+  <level>INFO</level>
+  <class>edu.cmich.cps396m.krame1tg.remoteserver.RemoteServer</class>
+  <method>onConnectionChanged</method>
+  <thread>16</thread>
+  <message>User disconnected.</message>
+</record>
+</log>
