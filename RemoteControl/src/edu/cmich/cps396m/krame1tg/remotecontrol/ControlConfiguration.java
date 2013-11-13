@@ -196,6 +196,18 @@ public class ControlConfiguration implements Serializable {
 	}
 	
 	/**
+	 * Gets the location and key mapping associated with the specified button.
+	 * @param id The id of the button to recieve the mapping for
+	 * @return The mapping for the specified button
+	 */
+	public MappingAndLocation getMapping(int id) {
+		if (map.containsKey(id))
+			return map.get(id);
+		else
+			return null;
+	}
+	
+	/**
 	 * Generates the default ControlConfiguration
 	 */
 	private void generateDefaultMap() {
@@ -232,7 +244,7 @@ public class ControlConfiguration implements Serializable {
 	 * @param button The id of the button to be remapped.
 	 * @param key The new key to remap to the button.
 	 */
-	public void reMap(int button, String key) {
+	public void remap(int button, String key) {
 		MappingAndLocation loc = map.get(button);
 		loc.setKey(keyMap.get(key));
 	}
@@ -276,7 +288,7 @@ public class ControlConfiguration implements Serializable {
 		 * @return Whether or not the button has been moved.
 		 */
 		public boolean isLocationSet() {
-			return x == -1 && y == -1;
+			return x != -1 && y != -1;
 		}
 
 		/**
@@ -302,6 +314,14 @@ public class ControlConfiguration implements Serializable {
 		public int getX() {
 			return x;
 		}
+		
+		/**
+		 * Sets the x location assigned to this mapping
+		 * @param x The new x location of this mapping
+		 */
+		public void setX(int x) {
+			this.x = x;
+		}
 
 		/**
 		 * Gets the y location assigned to this mapping.
@@ -309,6 +329,14 @@ public class ControlConfiguration implements Serializable {
 		 */
 		public int getY() {
 			return y;
+		}
+		
+		/**
+		 * Sets the y location assigned to this mapping.
+		 * @param y The new y location of this mapping
+		 */
+		public void setY(int y) {
+			this.y = y;
 		}
 	}
 }

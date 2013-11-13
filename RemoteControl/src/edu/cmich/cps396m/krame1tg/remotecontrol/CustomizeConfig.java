@@ -157,7 +157,7 @@ public class CustomizeConfig extends ControllerActivity {
 	 */
 	private void remapConfig() {
 		for (int k = 0; k < edits.length; k++) {
-			config.reMap(buttons[k], ((EditText) findViewById(edits[k])).getText().toString());
+			config.remap(buttons[k], ((EditText) findViewById(edits[k])).getText().toString());
 		}
 	}
 }

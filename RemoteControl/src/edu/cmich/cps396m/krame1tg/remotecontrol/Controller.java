@@ -1,5 +1,6 @@
 package edu.cmich.cps396m.krame1tg.remotecontrol;
 
+import edu.cmich.cps396m.krame1tg.remotecontrol.ControlConfiguration.MappingAndLocation;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -82,11 +83,16 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 */
 	private void setUpButtons() {
 		boolean transparent = config.isTransparent();
-		for (int k = 0; k < CustomizeConfig.buttons.length; k++) {
-			View view = findViewById(CustomizeConfig.buttons[k]);
+		for (int k : CustomizeConfig.buttons) {
+			View view = findViewById(k);
+			MappingAndLocation mapping = config.getMapping(view.getId());
 			String key = config.getKeyText(view.getId());
 			if (key == null) {
-				config.reMap(view.getId(), "ESC");
+				config.remap(view.getId(), "ESC");
+			}
+			if (mapping.isLocationSet()) {
+				view.setX(mapping.getX());
+				view.setY(mapping.getY());
 			}
 			if (transparent)
 				view.setAlpha(.1F);
