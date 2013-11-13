@@ -5,53 +5,12 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/btnLEFT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:text="@string/defaultButtonText" />
-
-    <Button
-        android:id="@+id/btnUP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnLEFT"
-        android:layout_toRightOf="@+id/btnLEFT"
-        android:text="@string/defaultButtonText" />
-
-    <Button
-        android:id="@+id/btnDOWN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnUP"
-        android:layout_below="@+id/btnLEFT"
-        android:text="@string/defaultButtonText" />
-
-    <Button
-        android:id="@+id/btnRIGHT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnUP"
-        android:layout_toRightOf="@+id/btnUP"
-        android:text="@string/defaultButtonText" />
-
-    <Button
-        android:id="@+id/btnB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnRIGHT"
-        android:layout_alignBottom="@+id/btnRIGHT"
-        android:layout_alignParentRight="true"
-        android:text="@string/defaultButtonText" />
-
-    <Button
         android:id="@+id/btnY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnB"
         android:layout_toLeftOf="@+id/btnB"
-        android:text="@string/defaultButtonText" />
+        android:background="@drawable/btn_sy" />
 
     <Button
         android:id="@+id/btnX"
@@ -60,7 +19,7 @@
         android:layout_alignBaseline="@+id/btnRIGHT"
         android:layout_alignBottom="@+id/btnRIGHT"
         android:layout_toLeftOf="@+id/btnY"
-        android:text="@string/defaultButtonText" />
+        android:background="@drawable/btn_sx" />
 
     <Button
         android:id="@+id/btnA"
@@ -69,62 +28,114 @@
         android:layout_alignBaseline="@+id/btnDOWN"
         android:layout_alignBottom="@+id/btnDOWN"
         android:layout_toRightOf="@+id/btnX"
-        android:text="@string/defaultButtonText" />
+        android:background="@drawable/btn_sa" />
 
-    <Button
-        android:id="@+id/F4"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/defaultButtonText" />
+        android:divider="@drawable/empty_wide_divider"
+        android:showDividers="middle" >
+
+        <ImageButton
+            android:id="@+id/F1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf1" />
+
+        <ImageButton
+            android:id="@+id/F2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf2" />
+
+        <ImageButton
+            android:id="@+id/F3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf3" />
+
+        <ImageButton
+            android:id="@+id/F4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf4" />
+
+        <ImageButton
+            android:id="@+id/F5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf5" />
+
+        <ImageButton
+            android:id="@+id/F6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf6" />
+
+        <ImageButton
+            android:id="@+id/F7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:src="@drawable/btn_sf7" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/F3"
+        android:id="@+id/btnUP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/F4"
-        android:text="@string/defaultButtonText" />
+        android:layout_above="@+id/btnLEFT"
+        android:layout_toRightOf="@+id/btnLEFT"
+        android:background="@drawable/btn_sup" />
 
     <Button
-        android:id="@+id/F2"
+        android:id="@+id/btnDOWN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/F3"
-        android:text="@string/defaultButtonText" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_toLeftOf="@+id/btnRIGHT"
+        android:background="@drawable/btn_sdown" />
 
     <Button
-        android:id="@+id/F1"
+        android:id="@+id/btnRIGHT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/F2"
-        android:text="@string/defaultButtonText" />
+        android:layout_above="@+id/btnDOWN"
+        android:layout_toRightOf="@+id/btnUP"
+        android:background="@drawable/btn_sright" />
 
     <Button
-        android:id="@+id/F5"
+        android:id="@+id/btnB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/F4"
-        android:text="@string/defaultButtonText" />
+        android:layout_alignRight="@+id/linearLayout1"
+        android:layout_below="@+id/btnUP"
+        android:background="@drawable/btn_sb" />
 
     <Button
-        android:id="@+id/F6"
+        android:id="@+id/btnLEFT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/F5"
-        android:text="@string/defaultButtonText" />
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignTop="@+id/btnX"
+        android:background="@drawable/btn_sleft" />
 
-    <Button
-        android:id="@+id/F7"
+    <TextView
+        android:id="@+id/controllerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/F6"
-        android:text="@string/defaultButtonText" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

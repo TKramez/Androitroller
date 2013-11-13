@@ -11,9 +11,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Controller extends ControllerActivity implements OnTouchListener {
 	
@@ -75,7 +73,7 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		bindService(new Intent(this, RemoteControlService.class), conn, Context.BIND_AUTO_CREATE);
 		
 		for (int k : CustomizeConfig.buttons) {
-			((Button) findViewById(k)).setOnTouchListener(this);
+			findViewById(k).setOnTouchListener(this);
 		}
 	}
 	
@@ -83,26 +81,17 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 * Assigns the buttons their transparency and text based on the selected configuration.
 	 */
 	private void setUpButtons() {
-		RelativeLayout layout = (RelativeLayout)((ViewGroup)findViewById(android.R.id.content)).getChildAt(0);
 		boolean transparent = config.isTransparent();
-		for (int k = 0; k < layout.getChildCount(); k++) {
-			View view = layout.getChildAt(k);
-			if (view instanceof Button) {
-				String key = config.getKeyText(view.getId());
-				if (key == null) {
-					config.reMap(view.getId(), "ESC");
-					key = config.getKeyText(view.getId());
-				}
-				key = key.substring(0, Math.min(3, key.length()));
-				key = pad(key, ' ', 3);
-				if (key != null) {
-					Button button = (Button) view;
-					button.setText(key);
-					if (transparent)
-						button.setAlpha(.1F);
-				}
+		for (int k = 0; k < CustomizeConfig.buttons.length; k++) {
+			View view = findViewById(CustomizeConfig.buttons[k]);
+			String key = config.getKeyText(view.getId());
+			if (key == null) {
+				config.reMap(view.getId(), "ESC");
 			}
+			if (transparent)
+				view.setAlpha(.1F);
 		}
+		((TextView) findViewById(R.id.controllerName)).setText(config.getName());
 	}
 	
 	/**
@@ -135,26 +124,6 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 
 
 		return true;
-	}
-
-	/**
-	 * Pads a string at the front and pad to the provided lenght with the provided
-	 * character.
-	 * @param key String to pad
-	 * @param padding Character to pad with
-	 * @param k The desired length of the string
-	 * @return The resulting String
-	 */
-	private String pad(String key, char padding, int k) {
-		StringBuilder result = new StringBuilder(key);
-		
-		while (result.length() < k) {
-			result.append(padding);
-			if (result.length() < k)
-				result.insert(0, padding);
-		}
-		
-		return result.toString();		
 	}
 	
 	/**
