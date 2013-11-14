@@ -73,8 +73,8 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		
 		bindService(new Intent(this, RemoteControlService.class), conn, Context.BIND_AUTO_CREATE);
 		
-		for (int k : CustomizeConfig.buttons) {
-			findViewById(k).setOnTouchListener(this);
+		for (ButtonMappings map : ButtonMappings.buttons) {
+			findViewById(map.button).setOnTouchListener(this);
 		}
 	}
 	
@@ -83,8 +83,8 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 */
 	private void setUpButtons() {
 		boolean transparent = config.isTransparent();
-		for (int k : CustomizeConfig.buttons) {
-			View view = findViewById(k);
+		for (ButtonMappings map : ButtonMappings.buttons) {
+			View view = findViewById(map.button);
 			MappingAndLocation mapping = config.getMapping(view.getId());
 			String key = config.getKeyText(view.getId());
 			if (key == null) {
@@ -94,10 +94,14 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 				view.setX(mapping.getX());
 				view.setY(mapping.getY());
 			}
-			if (transparent)
-				view.setAlpha(.1F);
+			if (transparent) {
+				view.setBackgroundResource(map.drawable);
+			}
 		}
-		((TextView) findViewById(R.id.controllerName)).setText(config.getName());
+		TextView name = (TextView) findViewById(R.id.controllerName);
+		name.setText(config.getName());
+		if (transparent)
+			name.setAlpha(.1F);
 	}
 	
 	/**

@@ -43,50 +43,58 @@
             android:id="@+id/F1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf1"
             android:padding="0dp"
-            android:src="@drawable/btn_sf1" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf2"
             android:padding="0dp"
-            android:src="@drawable/btn_sf2" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf3"
             android:padding="0dp"
-            android:src="@drawable/btn_sf3" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf4"
             android:padding="0dp"
-            android:src="@drawable/btn_sf4" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf5"
             android:padding="0dp"
-            android:src="@drawable/btn_sf5" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf6"
             android:padding="0dp"
-            android:src="@drawable/btn_sf6" />
+            android:src="@drawable/empty_wide_divider" />
 
         <ImageButton
             android:id="@+id/F7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_sf7"
             android:padding="0dp"
-            android:src="@drawable/btn_sf7" />
+            android:src="@drawable/empty_wide_divider" />
+
     </LinearLayout>
 
     <Button

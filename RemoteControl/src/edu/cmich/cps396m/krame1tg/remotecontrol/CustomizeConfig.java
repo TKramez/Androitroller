@@ -17,48 +17,6 @@ public class CustomizeConfig extends ControllerActivity {
 	private ControlConfiguration config;
 	
 	/**
-	 * List of all available textboxes.
-	 */
-	private static final int[] edits = {
-		R.id.editUP,
-		R.id.editDOWN,
-		R.id.editLEFT,
-		R.id.editRIGHT,
-		R.id.editA,
-		R.id.editB,
-		R.id.editX,
-		R.id.editY,
-		R.id.editF1,
-		R.id.editF2,
-		R.id.editF3,
-		R.id.editF4,
-		R.id.editF5,
-		R.id.editF6,
-		R.id.editF7
-	};
-	
-	/**
-	 * List of all available buttons.
-	 */
-	protected static final int[] buttons = {
-		R.id.btnUP,
-		R.id.btnDOWN,
-		R.id.btnLEFT,
-		R.id.btnRIGHT,
-		R.id.btnA,
-		R.id.btnB,
-		R.id.btnX,
-		R.id.btnY,
-		R.id.F1,
-		R.id.F2,
-		R.id.F3,
-		R.id.F4,
-		R.id.F5,
-		R.id.F6,
-		R.id.F7
-	};
-	
-	/**
 	 * Gets the intent and returns if there was no config in it
 	 */
 	@Override
@@ -82,8 +40,8 @@ public class CustomizeConfig extends ControllerActivity {
 	private void initFields() {
 		((EditText) findViewById(R.id.configName)).setText(config.getName());
 		
-		for (int k = 0; k < edits.length; k++) {
-			((EditText) findViewById(edits[k])).setText(config.getKeyText(buttons[k]));
+		for (ButtonMappings map : ButtonMappings.buttons) {
+			((EditText) findViewById(map.editText)).setText(config.getKeyText(map.button));
 		}
 		
 		((CheckBox) findViewById(R.id.transparent)).setChecked(config.isTransparent());
@@ -96,8 +54,8 @@ public class CustomizeConfig extends ControllerActivity {
 	private boolean areFieldsValid() {
 		boolean result = true;
 		
-		for (int k = 0; k < edits.length; k++) {
-			result &= isValid((EditText) findViewById(edits[k]));
+		for (ButtonMappings map : ButtonMappings.buttons) {
+			result &= isValid((EditText) findViewById(map.editText));
 		}
 		
 		return result;
@@ -156,8 +114,8 @@ public class CustomizeConfig extends ControllerActivity {
 	 * Saves the new values to the config.
 	 */
 	private void remapConfig() {
-		for (int k = 0; k < edits.length; k++) {
-			config.remap(buttons[k], ((EditText) findViewById(edits[k])).getText().toString());
+		for (ButtonMappings map : ButtonMappings.buttons) {
+			config.remap(map.button, ((EditText) findViewById(map.editText)).getText().toString());
 		}
 	}
 }
