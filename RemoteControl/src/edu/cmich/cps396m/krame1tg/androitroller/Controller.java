@@ -1,6 +1,7 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
-import edu.cmich.cps396m.krame1tg.remotecontrol.ControlConfiguration.MappingAndLocation;
+import edu.cmich.cps396m.krame1tg.androitroller.ControlConfiguration.MappingAndLocation;
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;

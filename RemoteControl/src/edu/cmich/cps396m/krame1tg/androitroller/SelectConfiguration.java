@@ -1,4 +1,4 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.AlertDialog;

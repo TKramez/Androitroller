@@ -1,4 +1,6 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
+
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 
 /**
  * This class is used to map the id of the buttons to their transparent

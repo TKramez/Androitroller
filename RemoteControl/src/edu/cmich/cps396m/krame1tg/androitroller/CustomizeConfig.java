@@ -1,5 +1,6 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.Intent;

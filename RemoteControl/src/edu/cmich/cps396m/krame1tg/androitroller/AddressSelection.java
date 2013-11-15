@@ -1,10 +1,11 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;

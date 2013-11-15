@@ -1,8 +1,10 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.util.SparseArray;
 
 public class ControlConfiguration implements Serializable {

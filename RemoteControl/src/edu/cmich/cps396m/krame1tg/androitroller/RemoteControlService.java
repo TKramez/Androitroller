@@ -1,4 +1,4 @@
-package edu.cmich.cps396m.krame1tg.remotecontrol;
+package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
