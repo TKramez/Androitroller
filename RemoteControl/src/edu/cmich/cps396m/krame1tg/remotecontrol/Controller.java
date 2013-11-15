@@ -62,7 +62,7 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	
 	/**
 	 * Gets the system vibrator for providing feedback on button press.
-	 * Binds the service and sets touchlisteners for the buttons.
+	 * Binds the service and sets touch listeners for the buttons.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
