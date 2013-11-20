@@ -1,20 +1,35 @@
 package edu.cmich.cps396m.krame1tg.androitroller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+
 import edu.cmich.cps396m.krame1tg.androitroller.ControlConfiguration.MappingAndLocation;
 import edu.cmich.cps396m.krame1tg.androitroller.R;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class Controller extends ControllerActivity implements OnTouchListener {
 	
 	/**
@@ -83,6 +98,17 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 * Assigns the buttons their transparency and text based on the selected configuration.
 	 */
 	private void setUpButtons() {
+		RelativeLayout mainlayout = (RelativeLayout)findViewById(R.id.rl_main);
+		if (config.getBackground() != null){
+			File imgfile = new File(config.getBackground());
+	
+		    if(imgfile.exists()){
+		        BitmapFactory.Options options = new BitmapFactory.Options();	
+		        Bitmap bitmap = BitmapFactory.decodeFile(imgfile.getAbsolutePath(), options);
+		        mainlayout.setBackground(new BitmapDrawable(this.getResources(), bitmap));
+		    }
+		}
+		
 		boolean transparent = config.isTransparent();
 		for (ButtonMappings map : ButtonMappings.buttons) {
 			View view = findViewById(map.button);
@@ -145,4 +171,5 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		super.onDestroy();
 		unbindService(conn);
 	}
+
 }

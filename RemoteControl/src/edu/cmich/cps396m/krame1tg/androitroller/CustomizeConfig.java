@@ -1,10 +1,14 @@
 package edu.cmich.cps396m.krame1tg.androitroller;
 
 import edu.cmich.cps396m.krame1tg.androitroller.R;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,6 +20,12 @@ public class CustomizeConfig extends ControllerActivity {
 	 * The currently selected ControlConfiguration
 	 */
 	private ControlConfiguration config;
+	
+	/**
+	 * The path to the selected background.
+	 */
+	private String background;
+	private static int GALLERY_REQUEST = 5557;
 	
 	/**
 	 * Gets the intent and returns if there was no config in it
@@ -46,6 +56,8 @@ public class CustomizeConfig extends ControllerActivity {
 		}
 		
 		((CheckBox) findViewById(R.id.transparent)).setChecked(config.isTransparent());
+		
+		this.background = config.getBackground();
 	}
 	
 	/**
@@ -98,6 +110,7 @@ public class CustomizeConfig extends ControllerActivity {
 			Intent i = getIntent();
 			EditText text = (EditText) findViewById(R.id.configName);
 			config.setName(text.getText().toString());
+			config.setBackground(this.background);
 			i.putExtra("config", config);
 			setResult(RESULT_OK, i);
 			finish();
@@ -108,6 +121,11 @@ public class CustomizeConfig extends ControllerActivity {
 								 .setItems(ControlConfiguration.getValidKeyCodes(), null)
 								 .create();
 			dialog.show();
+		} else if (v.getId() == R.id.btn_bkgrd) {
+		    Intent intent = new Intent();	
+		    intent.setType("image/*");
+		    intent.setAction(Intent.ACTION_GET_CONTENT);
+		    startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST);
 		}
 	}
 
@@ -119,4 +137,42 @@ public class CustomizeConfig extends ControllerActivity {
 			config.remap(map.button, ((EditText) findViewById(map.editText)).getText().toString());
 		}
 	}
+
+	@Override
+	/**
+	 * onActivityResult examines resultCode and requestCode and acts accordingly
+	 * with received data.  The behavior for the requestCodes is:
+	 *    
+	 * GALLERY_REQUEST: sets the path stored in background to the path of the 
+	 * selected image.
+	 *     
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK) {
+			if (requestCode == GALLERY_REQUEST){
+				Uri selectUri = data.getData();
+				this.background = getRealPathFromURI(selectUri);
+				Log.d("Androitroller", this.background);
+			}
+		}
+	}
+
+    /**
+	 * CREDIT: from http://stackoverflow.com/questions/3401579/get-filename-and-path-from-uri-from-mediastore
+	 * AUTHOR USERNAME: PercyPercy.
+	 * 
+	 * getRealPathFromURI accepts a URI and converts it to a string representing the absolute filepath of
+	 * the given URI.  The URI should refer to a image selected from the gallery.
+	 */
+	public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
+    }
 }

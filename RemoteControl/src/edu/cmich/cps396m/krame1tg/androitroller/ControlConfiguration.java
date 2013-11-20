@@ -118,6 +118,11 @@ public class ControlConfiguration implements Serializable {
 	private boolean transparent;
 	
 	/**
+	 * Path to background image.
+	 */
+	private String background;
+	
+	/**
 	 * Creates a new ControlConfiguration with the specified name
 	 * @param name The name of the new ControlConfiguration
 	 */
@@ -134,6 +139,7 @@ public class ControlConfiguration implements Serializable {
 	public ControlConfiguration(String name, HashMap<Integer, MappingAndLocation> map) {
 		this.name = name;
 		this.map = map;
+		this.background = null;
 	}
 	
 	/**
@@ -166,6 +172,22 @@ public class ControlConfiguration implements Serializable {
 	 */
 	public void setTransparent(boolean transparent) {
 		this.transparent = transparent;
+	}
+	
+	/**
+	 * Gets the path to the background image.
+	 * @return the path of the background image.
+	 */
+	public String getBackground(){
+		return this.background;
+	}
+	
+	/**
+	 * Sets the path to the background image.
+	 * @param background the path of the image.
+	 */
+	public void setBackground(String background){
+		this.background = background;
 	}
 
 	@Override

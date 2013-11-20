@@ -20,26 +20,6 @@
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/codes"
-        android:onClick="btnClick"
-        android:text="@string/save" />
-
-    <Button
-        android:id="@+id/codes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/save"
-        android:layout_alignBottom="@+id/save"
-        android:layout_alignRight="@+id/configName"
-        android:onClick="btnClick"
-        android:text="Valid Key Codes" />
-
     <CheckBox
         android:id="@+id/transparent"
         android:layout_width="wrap_content"
@@ -363,5 +343,37 @@
 
         </TableLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_bkgrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/transparent"
+        android:layout_alignParentBottom="true"
+        android:onClick="btnClick"
+        android:text="Set Background"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_bkgrd"
+        android:layout_alignBottom="@+id/btn_bkgrd"
+        android:layout_toRightOf="@+id/transparent"
+        android:onClick="btnClick"
+        android:text="@string/save"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/codes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/save"
+        android:layout_alignBottom="@+id/save"
+        android:layout_toRightOf="@+id/save"
+        android:onClick="btnClick"
+        android:text="Key Codes"
+        android:textSize="14sp" />
 
 </RelativeLayout>
