@@ -54,7 +54,6 @@ public class RemoteControlService extends Service {
 	 * Disconnects the service from the server.
 	 */
 	public void disconnect() {
-		
 		if (sock != null) {
 			try {
 				sock.close();

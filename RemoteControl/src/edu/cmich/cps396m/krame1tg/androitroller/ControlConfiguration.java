@@ -285,7 +285,8 @@ public class ControlConfiguration implements Serializable {
 		/**
 		 * The key and x and y location.
 		 */
-		private int key, x, y;
+		private int key;
+		private float x, y;
 		
 		/**
 		 * Creates a new MappingAndLocation for the specified key with default x and y
@@ -301,7 +302,7 @@ public class ControlConfiguration implements Serializable {
 		 * @param x The x position of the button
 		 * @param y The y position of the button
 		 */
-		public MappingAndLocation(int key, int x, int y) {
+		public MappingAndLocation(int key, float x, float y) {
 			this.key = key;
 			this.x = x;
 			this.y = y;
@@ -330,12 +331,22 @@ public class ControlConfiguration implements Serializable {
 		public int getKey() {
 			return key;
 		}
+		
+		/**
+		 * Sets the location assigned to this mapping.
+		 * @param x The x location of this mapping
+		 * @param y The y location of this mapping
+		 */
+		public void setLocation(float x, float y) {
+			setX(x);
+			setY(y);
+		}
 
 		/**
 		 * Gets the x location assigned to this mapping.
 		 * @return The x location of this mapping
 		 */
-		public int getX() {
+		public float getX() {
 			return x;
 		}
 		
@@ -343,7 +354,7 @@ public class ControlConfiguration implements Serializable {
 		 * Sets the x location assigned to this mapping
 		 * @param x The new x location of this mapping
 		 */
-		public void setX(int x) {
+		public void setX(float x) {
 			this.x = x;
 		}
 
@@ -351,7 +362,7 @@ public class ControlConfiguration implements Serializable {
 		 * Gets the y location assigned to this mapping.
 		 * @return The y location of this mapping
 		 */
-		public int getY() {
+		public float getY() {
 			return y;
 		}
 		
@@ -359,7 +370,7 @@ public class ControlConfiguration implements Serializable {
 		 * Sets the y location assigned to this mapping.
 		 * @param y The new y location of this mapping
 		 */
-		public void setY(int y) {
+		public void setY(float y) {
 			this.y = y;
 		}
 	}

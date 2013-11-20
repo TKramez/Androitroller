@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SelectConfiguration extends ControllerActivity {
 
@@ -69,7 +70,7 @@ public class SelectConfiguration extends ControllerActivity {
 				AlertDialog dialog = new AlertDialog.Builder(SelectConfiguration.this)
 										.setTitle(config.getName())
 										.setCancelable(true)
-										.setItems(new CharSequence[] {"Play", "Edit", "Delete"}, new OnClickListener() {
+										.setItems(new CharSequence[] {"Play", "Edit", "Move Buttons","Delete"}, new OnClickListener() {
 
 											@Override
 											public void onClick(
@@ -90,7 +91,15 @@ public class SelectConfiguration extends ControllerActivity {
 														switchActivityForResult(i, selected);
 													}
 													break;
-												case 2: // Delete
+												case 2: // Move Buttons
+													Toast.makeText(SelectConfiguration.this, "NYI", Toast.LENGTH_LONG).show();
+													selected = arg2;
+													Intent intent = new Intent(SelectConfiguration.this, Controller.class);
+													intent.putExtra("config", config);
+													intent.putExtra("customize", true);
+													switchActivityForResult(intent, selected);
+													break;
+												case 3: // Delete
 													configs.remove(arg2);
 													adapter.notifyDataSetChanged();
 													break;
@@ -111,6 +120,24 @@ public class SelectConfiguration extends ControllerActivity {
 		}
 	}
 	
+	/**
+	 * Receives the result of the CustomizeConfig activity.
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == RESULT_OK) {
+			if (requestCode == selected) {
+				ControlConfiguration config = (ControlConfiguration) data.getSerializableExtra("config");
+				configs.remove(selected);
+				configs.add(selected, config);
+				adapter.notifyDataSetChanged();
+				saveConfigs();
+			}
+		}
+	}
+
 	/**
 	 * Controls all the click of the activity.
 	 * If new config is clicked it creates a default configuration.
@@ -207,23 +234,5 @@ public class SelectConfiguration extends ControllerActivity {
 				return null;
 			}
 		}.execute(configs.toArray(new ControlConfiguration[configs.size()]));
-	}
-	
-	/**
-	 * Recieves the result of the CustomizeConfig activity.
-	 */
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		if (resultCode == RESULT_OK) {
-			if (requestCode == selected) {
-				ControlConfiguration config = (ControlConfiguration) data.getSerializableExtra("config");
-				configs.remove(selected);
-				configs.add(selected, config);
-				adapter.notifyDataSetChanged();
-				saveConfigs();
-			}
-		}
 	}
 }

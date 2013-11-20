@@ -1,8 +1,6 @@
 package edu.cmich.cps396m.krame1tg.androitroller;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 
 import edu.cmich.cps396m.krame1tg.androitroller.ControlConfiguration.MappingAndLocation;
 import edu.cmich.cps396m.krame1tg.androitroller.R;
@@ -15,19 +13,17 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class Controller extends ControllerActivity implements OnTouchListener {
@@ -47,6 +43,8 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 */
 	private RemoteControlService service;
 	
+	private boolean isCustomize;
+	
 	/**
 	 * Monitors the connection with the service to keep track of
 	 * whether a reconnect is in order or now.
@@ -62,17 +60,11 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		public void onServiceConnected(ComponentName name, IBinder binder) {
 			service = ((RemoteControlService.RemoteControlBinder)binder).getService();
 			
-			Intent i = getIntent();
-			
 			if (!service.isConnected()) {
-				switchActivity(AddressSelection.class);
-				
-			} else if (i.hasExtra("config")) {
-				config = (ControlConfiguration) i.getSerializableExtra("config");
-				setUpButtons();
-			} else {
-				switchActivity(SelectConfiguration.class);
-			}
+				Toast.makeText(Controller.this, "Not connected to server.", Toast.LENGTH_LONG).show();
+				setResult(RESULT_CANCELED);
+				finish();
+			} 
 		}
 	};
 	
@@ -87,15 +79,32 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		
 		vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		
-		bindService(new Intent(this, RemoteControlService.class), conn, Context.BIND_AUTO_CREATE);
+		Intent intent = getIntent();
 		
-		for (ButtonMappings map : ButtonMappings.buttons) {
-			findViewById(map.button).setOnTouchListener(this);
+		isCustomize = intent.getBooleanExtra("customize", false);
+		
+		if (intent.hasExtra("config")) {
+			config = (ControlConfiguration) intent.getSerializableExtra("config");
+			setUpButtons();
+		} else {
+			Toast.makeText(this, "No configuration selected.", Toast.LENGTH_LONG).show();
+			setResult(RESULT_CANCELED);
+			finish();
+		}
+
+		if (!isCustomize) {
+			bindService(new Intent(this, RemoteControlService.class), conn, Context.BIND_AUTO_CREATE);
+
+			for (ButtonMappings map : ButtonMappings.buttons) {
+				findViewById(map.button).setOnTouchListener(this);
+			}
+		} else {
+			findViewById(R.id.saveController).setVisibility(View.VISIBLE);
 		}
 	}
 	
 	/**
-	 * Assigns the buttons their transparency and text based on the selected configuration.
+	 * Assigns the buttons their transparency based on the selected configuration.
 	 */
 	private void setUpButtons() {
 		RelativeLayout mainlayout = (RelativeLayout)findViewById(R.id.rl_main);
@@ -118,8 +127,29 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 				config.remap(view.getId(), "ESC");
 			}
 			if (mapping.isLocationSet()) {
-				view.setX(mapping.getX());
-				view.setY(mapping.getY());
+				switch (map.button) {
+				case R.id.F1:
+				case R.id.F2:
+				case R.id.F3:
+				case R.id.F4:
+				case R.id.F5:
+				case R.id.F6:
+				case R.id.F7:
+					LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+					params.leftMargin = (int) mapping.getX();
+					params.topMargin = (int) mapping.getY();
+					params.width = view.getWidth();
+					params.height = view.getHeight();
+					view.setLayoutParams(params);
+					break;
+				default:
+					RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) view.getLayoutParams();
+					param.leftMargin = (int) mapping.getX();
+					param.topMargin = (int) mapping.getY();
+					param.width = view.getWidth();
+					param.height = view.getHeight();
+					view.setLayoutParams(param);
+				}
 			}
 			if (transparent) {
 				view.setBackgroundResource(map.drawable);
@@ -163,13 +193,33 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		return true;
 	}
 	
+	public void btnClick(View v) {
+		switch (v.getId()) {
+		case R.id.saveController:
+			saveLocations();
+			Intent intent = new Intent();
+			intent.putExtra("config", config);
+			setResult(RESULT_OK, intent);
+			finish();
+			break;
+		}
+	}
+	
+	private void saveLocations() {
+		for (ButtonMappings mapping : ButtonMappings.buttons) {
+			View button = findViewById(mapping.button);
+			config.getMapping(mapping.button).setLocation(button.getLeft(), button.getTop());
+		}
+	}
+
 	/**
 	 * Unbinds the service when the activity is destroyed.
 	 */
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		unbindService(conn);
+		if (service != null)
+			unbindService(conn);
 	}
 
 }

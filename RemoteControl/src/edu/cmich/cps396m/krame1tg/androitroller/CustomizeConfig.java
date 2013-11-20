@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 public class CustomizeConfig extends ControllerActivity {
 
+	private static int GALLERY_REQUEST = 5557;
+
 	/**
 	 * The currently selected ControlConfiguration
 	 */
@@ -25,8 +27,6 @@ public class CustomizeConfig extends ControllerActivity {
 	 * The path to the selected background.
 	 */
 	private String background;
-	private static int GALLERY_REQUEST = 5557;
-	
 	/**
 	 * Gets the intent and returns if there was no config in it
 	 */
