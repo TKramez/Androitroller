@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -122,10 +124,28 @@ public class CustomizeConfig extends ControllerActivity {
 								 .create();
 			dialog.show();
 		} else if (v.getId() == R.id.btn_bkgrd) {
-		    Intent intent = new Intent();	
-		    intent.setType("image/*");
-		    intent.setAction(Intent.ACTION_GET_CONTENT);
-		    startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST);
+			AlertDialog dialog = new AlertDialog.Builder(this)
+				.setTitle("Set Background")
+				.setCancelable(true)
+				.setItems(new CharSequence[] {"Select from Gallery", "Blank Background"}, new OnClickListener() {
+					@Override
+					public void onClick(
+							DialogInterface dialog,	int which) {
+						switch (which) {
+						case 0: // Select new image from gallery
+						    Intent intent = new Intent();	
+						    intent.setType("image/*");
+						    intent.setAction(Intent.ACTION_GET_CONTENT);
+						    startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST);
+							break;
+						case 1: // Set the background image to none
+                            background = null;
+							break;
+						}
+					}})
+				.create();
+
+			dialog.show();
 		}
 	}
 
