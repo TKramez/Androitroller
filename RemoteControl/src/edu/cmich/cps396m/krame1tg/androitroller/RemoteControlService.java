@@ -7,7 +7,6 @@ import java.net.Socket;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -43,11 +42,8 @@ public class RemoteControlService extends Service {
 	 * @return Whether or not the service is connected. Always returns true on emulator.
 	 */
 	public boolean isConnected() {
-		//if ("google_sdk".equals(Build.PRODUCT)) {
-			Log.e("TK", "isConnected always returns true.");
-			return true;
-		//} else
-			//return sock != null;
+		Log.e("TK", "isConnected always returns true."); return true;
+		//return sock != null;
 	}
 	
 	/**

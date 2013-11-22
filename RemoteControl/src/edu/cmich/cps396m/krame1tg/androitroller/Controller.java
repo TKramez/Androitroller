@@ -1,6 +1,7 @@
 package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.File;
+import java.util.HashSet;
 
 import edu.cmich.cps396m.krame1tg.androitroller.ControlConfiguration.MappingAndLocation;
 import edu.cmich.cps396m.krame1tg.androitroller.R;
@@ -17,21 +18,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class Controller extends ControllerActivity implements OnTouchListener {
 	
 	/**
 	 * Used to provide tactile feedback on button press.
 	 */
 	private Vibrator vibrate;
+	
+	private HashSet<Integer> hasMoved = new HashSet<Integer>();
 	
 	/**
 	 * The ControlConfiguration selected by the user.
@@ -94,71 +96,69 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 
 		if (!isCustomize) {
 			bindService(new Intent(this, RemoteControlService.class), conn, Context.BIND_AUTO_CREATE);
-
-			for (ButtonMappings map : ButtonMappings.buttons) {
-				findViewById(map.button).setOnTouchListener(this);
-			}
 		} else {
 			findViewById(R.id.saveController).setVisibility(View.VISIBLE);
+			findViewById(R.id.resetController).setVisibility(View.VISIBLE);
 		}
 	}
 	
 	/**
 	 * Assigns the buttons their transparency based on the selected configuration.
 	 */
-	private void setUpButtons() {
-		RelativeLayout mainlayout = (RelativeLayout)findViewById(R.id.rl_main);
-		if (config.getBackground() != null){
-			File imgfile = new File(config.getBackground());
-	
-		    if(imgfile.exists()){
-		        BitmapFactory.Options options = new BitmapFactory.Options();	
-		        Bitmap bitmap = BitmapFactory.decodeFile(imgfile.getAbsolutePath(), options);
-		        mainlayout.setBackground(new BitmapDrawable(this.getResources(), bitmap));
-		    }
-		}
-		
+	private void setUpButtons(boolean reset) {
+		if (!reset)
+			setBackground();
+
 		boolean transparent = config.isTransparent();
 		for (ButtonMappings map : ButtonMappings.buttons) {
-			View view = findViewById(map.button);
-			MappingAndLocation mapping = config.getMapping(view.getId());
-			String key = config.getKeyText(view.getId());
+			View button = findViewById(map.button);
+			MappingAndLocation mapping = config.getMapping(button.getId());
+			String key = config.getKeyText(button.getId());
 			if (key == null) {
-				config.remap(view.getId(), "ESC");
-			}
-			if (mapping.isLocationSet()) {
-				switch (map.button) {
-				case R.id.F1:
-				case R.id.F2:
-				case R.id.F3:
-				case R.id.F4:
-				case R.id.F5:
-				case R.id.F6:
-				case R.id.F7:
-					LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-					params.leftMargin = (int) mapping.getX();
-					params.topMargin = (int) mapping.getY();
-					params.width = view.getWidth();
-					params.height = view.getHeight();
-					view.setLayoutParams(params);
-					break;
-				default:
-					RelativeLayout.LayoutParams param = (RelativeLayout.LayoutParams) view.getLayoutParams();
-					param.leftMargin = (int) mapping.getX();
-					param.topMargin = (int) mapping.getY();
-					param.width = view.getWidth();
-					param.height = view.getHeight();
-					view.setLayoutParams(param);
+				button.setVisibility(View.INVISIBLE);
+			} else {
+				if (reset || mapping.isLocationSet()) {
+					Log.d("TK", mapping.getX() + ", " + mapping.getY());
+					button.setTranslationX(mapping.getX());
+					button.setTranslationY(mapping.getY());
+					Log.d("TK", button.getX() + ", " + button.getY());
 				}
-			}
-			if (transparent) {
-				view.setBackgroundResource(map.drawable);
+				if (transparent) {
+					button.setBackgroundResource(map.drawable);
+				}
+				button.setOnTouchListener(this);
 			}
 		}
 		TextView name = (TextView) findViewById(R.id.controllerName);
 		name.setText(config.getName());
 		if (transparent)
 			name.setAlpha(.1F);
+	}
+	
+	/**
+	 * Assigns the buttons their transparency based on the selected configuration.
+	 */
+	private void setUpButtons() {
+		setUpButtons(false);
+	}
+
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	private void setBackground() {
+		if (config.getBackground() != null){
+			RelativeLayout mainlayout = (RelativeLayout)findViewById(R.id.rl_main);
+			File imgfile = new File(config.getBackground());
+
+			if(imgfile.exists()){
+				BitmapFactory.Options options = new BitmapFactory.Options();	
+				Bitmap bitmap = BitmapFactory.decodeFile(imgfile.getAbsolutePath(), options);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+					mainlayout.setBackground(new BitmapDrawable(this.getResources(), bitmap));
+				} else {
+					mainlayout.setBackgroundDrawable(new BitmapDrawable(this.getResources(), bitmap));
+				}
+			}
+		}
 	}
 	
 	/**
@@ -171,22 +171,31 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 * sends the corresponding key code to the server.
 	 */
 	@Override
-	public boolean onTouch(View v, MotionEvent event) {
+	public boolean onTouch(View button, MotionEvent event) {
 		int action = event.getActionMasked();
 		Rect rect = new Rect();
-		v.getHitRect(rect);
+		button.getHitRect(rect);
 		final float x = event.getX() + rect.left, y = event.getY() + rect.top;
 
-		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP || !rect.contains((int)x, (int)y)) {
-			service.sendKey(config.getKey(v.getId()), RemoteControlService.KEY_RELEASE);
-			down = false;
-			return false;
-		} else {
-			if (!down && vibrate.hasVibrator()) {
-				vibrate.vibrate(100);
-				down = true;
+		if (!isCustomize) {
+			if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP || !rect.contains((int)x, (int)y)) {
+				service.sendKey(config.getKey(button.getId()), RemoteControlService.KEY_RELEASE);
+				down = false;
+				return false;
+			} else {
+				if (!down && vibrate.hasVibrator()) {
+					vibrate.vibrate(100);
+					down = true;
+				}
+				service.sendKey(config.getKey(button.getId()), RemoteControlService.KEY_PRESS);
 			}
-			service.sendKey(config.getKey(v.getId()), RemoteControlService.KEY_PRESS);
+		} else {
+			if (rect.contains((int) x, (int)y)) {
+				hasMoved.add(button.getId());
+				button.setX(x);
+				button.setY(y);
+				button.invalidate();
+			}
 		}
 
 
@@ -202,13 +211,21 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 			setResult(RESULT_OK, intent);
 			finish();
 			break;
+		case R.id.resetController:
+			for (ButtonMappings mapping : ButtonMappings.buttons) {
+				config.getMapping(mapping.button).resetLocation();
+			}
+			setUpButtons(true);
+			break;
 		}
 	}
 	
 	private void saveLocations() {
 		for (ButtonMappings mapping : ButtonMappings.buttons) {
-			View button = findViewById(mapping.button);
-			config.getMapping(mapping.button).setLocation(button.getLeft(), button.getTop());
+			if (hasMoved.contains(mapping.button)) {
+				View button = findViewById(mapping.button);
+				config.getMapping(mapping.button).setLocation(button.getTranslationX(), button.getTranslationY());
+			}
 		}
 	}
 

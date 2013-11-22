@@ -120,7 +120,7 @@ public class CustomizeConfig extends ControllerActivity {
 			AlertDialog dialog = new AlertDialog.Builder(this)
 								 .setCancelable(true)
 								 .setTitle("Key Codes")
-								 .setItems(ControlConfiguration.getValidKeyCodes(), null)
+								 .setItems(ControlConfiguration.getValidKeyCodes().toArray(new String[ControlConfiguration.getValidKeyCodes().size()]), null)
 								 .create();
 			dialog.show();
 		} else if (v.getId() == R.id.btn_bkgrd) {

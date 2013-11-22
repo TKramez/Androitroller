@@ -1,9 +1,10 @@
 package edu.cmich.cps396m.krame1tg.androitroller;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-
+import java.util.List;
 import edu.cmich.cps396m.krame1tg.androitroller.R;
 import android.util.SparseArray;
 
@@ -21,8 +22,20 @@ public class ControlConfiguration implements Serializable {
 	 */
 	private static HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
 	
+	/**
+	 * An unmodifiable list of valid key codes.
+	 */
+	private static final List<String> validKeyCodes;
+	
 	static {
 		initMaps();
+		
+		List<String> list = new ArrayList<String>(keyMap.keySet());
+		list.add("");
+		
+		Collections.sort(list);
+		
+		validKeyCodes = Collections.unmodifiableList(list);
 	}
 
 	/**
@@ -95,11 +108,8 @@ public class ControlConfiguration implements Serializable {
 	 * Gets all valid key code Strings
 	 * @return array of key code Strings
 	 */
-	public static String[] getValidKeyCodes() {
-		String[] keys = keyMap.keySet().toArray(new String[keyMap.keySet().size()]);
-		Arrays.sort(keys);
-		
-		return keys;
+	public static List<String> getValidKeyCodes() {
+		return validKeyCodes;
 	}
 
 	/**
@@ -260,7 +270,7 @@ public class ControlConfiguration implements Serializable {
 	 * @return Whether or not the key is valid
 	 */
 	public boolean validateKey(String key) {
-		return keyMap.containsKey(key);
+		return key.equals("") || keyMap.containsKey(key);
 	}
 	
 	/**
@@ -270,7 +280,7 @@ public class ControlConfiguration implements Serializable {
 	 */
 	public void remap(int button, String key) {
 		MappingAndLocation loc = map.get(button);
-		loc.setKey(keyMap.get(key));
+		loc.setKey(keyMap.containsKey(key) ? keyMap.get(key) : -1);
 	}
 	
 	/**
@@ -340,6 +350,14 @@ public class ControlConfiguration implements Serializable {
 		public void setLocation(float x, float y) {
 			setX(x);
 			setY(y);
+		}
+		
+		/**
+		 * Resets the location assigned to this mapping
+		 * to the default location.
+		 */
+		public void resetLocation() {
+			setLocation(-1, -1);
 		}
 
 		/**

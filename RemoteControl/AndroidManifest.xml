@@ -28,7 +28,7 @@
 
         <activity android:name="edu.cmich.cps396m.krame1tg.androitroller.Controller" android:label="@string/title_activity_controller" android:screenOrientation="landscape">
         </activity>
-        <activity android:name="edu.cmich.cps396m.krame1tg.androitroller.CustomizeConfig" android:label="@string/title_activity_customize_config">
+        <activity android:name="edu.cmich.cps396m.krame1tg.androitroller.CustomizeConfig" android:label="@string/title_activity_customize_config" android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 
