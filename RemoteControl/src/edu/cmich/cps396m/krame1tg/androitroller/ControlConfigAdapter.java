@@ -15,6 +15,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 
+/**
+ * This class is used to aid in the loading and saving of the ControlConfigurations.
+ * When it is created the ControlConfigurations are automatically loaded and when
+ * it is modified it saves the ControlConfigurations.
+ * @author Tyler Kramer
+ *
+ */
 public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 
 	private String fileName;
