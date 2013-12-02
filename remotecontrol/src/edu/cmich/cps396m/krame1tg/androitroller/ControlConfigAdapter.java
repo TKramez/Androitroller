@@ -17,6 +17,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/**
+* This class is used to aid in the loading and saving of the ControlConfigurations.
+* When it is created the ControlConfigurations are automatically loaded and when
+* it is modified it saves the ControlConfigurations.
+* @author Tyler Kramer
+*
+*/
 public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 
 	private String fileName;

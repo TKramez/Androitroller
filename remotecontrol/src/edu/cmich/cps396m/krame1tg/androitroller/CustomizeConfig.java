@@ -29,6 +29,7 @@ public class CustomizeConfig extends ControllerActivity {
 	 * The path to the selected background.
 	 */
 	private String background;
+	
 	/**
 	 * Gets the intent and returns if there was no config in it
 	 */

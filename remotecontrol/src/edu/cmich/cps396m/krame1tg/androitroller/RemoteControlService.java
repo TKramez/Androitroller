@@ -8,7 +8,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 
 public class RemoteControlService extends Service {
 
@@ -42,7 +41,6 @@ public class RemoteControlService extends Service {
 	 * @return Whether or not the service is connected. Always returns true on emulator.
 	 */
 	public boolean isConnected() {
-		//Log.e("TK", "isConnected always returns true."); return true;
 		return sock != null;
 	}
 	

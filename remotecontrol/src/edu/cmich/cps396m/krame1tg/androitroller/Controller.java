@@ -45,6 +45,10 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 	 */
 	private RemoteControlService service;
 	
+	/**
+	 * True if the activity is in customize mode,
+	 * false otherwise.
+	 */
 	private boolean isCustomize;
 	
 	/**
@@ -142,6 +146,9 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		setUpButtons(false);
 	}
 
+	/**
+	 * Sets the controller's background to the one specified in the config.
+	 */
 	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private void setBackground() {
@@ -202,6 +209,11 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		return true;
 	}
 	
+	/**
+	 * Handles the click of the save controller and
+	 * reset controller buttons.
+	 * @param v The button that was clicked.
+	 */
 	public void btnClick(View v) {
 		switch (v.getId()) {
 		case R.id.saveController:
@@ -220,6 +232,9 @@ public class Controller extends ControllerActivity implements OnTouchListener {
 		}
 	}
 	
+	/**
+	 * Saves the location of each button to the configuration.
+	 */
 	private void saveLocations() {
 		for (ButtonMappings mapping : ButtonMappings.buttons) {
 			if (hasMoved.contains(mapping.button)) {
