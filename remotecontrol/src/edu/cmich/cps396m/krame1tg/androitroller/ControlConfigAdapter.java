@@ -11,18 +11,22 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 
 	private String fileName;
 	private List<ControlConfiguration> configs;
+	private Activity activity;
 	
-	public ControlConfigAdapter(Context context, int resource, List<ControlConfiguration> configs, String fileName) {
+	public ControlConfigAdapter(Activity context, int resource, List<ControlConfiguration> configs, String fileName) {
 		super(context, resource, configs);
 		
+		this.activity = context;
 		this.fileName = fileName;
 		this.configs = configs;
 		readConfigs();
@@ -44,10 +48,21 @@ public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 		saveConfigs();
 	}
 	
+	public void setMessage(String message) {
+		TextView view = (TextView) activity.findViewById(R.id.message);
+		view.setText(message);
+		view.setVisibility(View.VISIBLE);
+	}
+	
+	public void removeMessage() {
+		activity.findViewById(R.id.message).setVisibility(View.GONE);
+	}
+	
 	/**
 	 * Reads the configurations asynchronously from the file.
 	 */
 	protected void readConfigs() {
+		setMessage("Loading...");
 		configs.clear();
 		new AsyncTask<Void, Void, List<ControlConfiguration>>() {
 
@@ -79,6 +94,7 @@ public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 				for (ControlConfiguration config : result) {
 					configs.add(config);
 				}
+				removeMessage();
 				ControlConfigAdapter.this.notifyDataSetChanged();
 			};
 		}.execute();
@@ -88,6 +104,7 @@ public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 	 * Writes the configurations to the file asynchronously.
 	 */
 	private void saveConfigs() {
+		setMessage("Saving...");
 		new AsyncTask<ControlConfiguration, Void, Void>() {
 
 			@Override
@@ -106,6 +123,12 @@ public class ControlConfigAdapter extends ArrayAdapter<ControlConfiguration> {
 				}
 				return null;
 			}
+			
+			@Override
+			protected void onPostExecute(Void result) {
+				removeMessage();
+			}
+			
 		}.execute(configs.toArray(new ControlConfiguration[configs.size()]));
 	}
 }
