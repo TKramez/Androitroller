@@ -159,7 +159,6 @@ public class CustomizeConfig extends ControllerActivity {
 		}
 	}
 
-	@Override
 	/**
 	 * onActivityResult examines resultCode and requestCode and acts accordingly
 	 * with received data.  The behavior for the requestCodes is:
@@ -168,6 +167,7 @@ public class CustomizeConfig extends ControllerActivity {
 	 * selected image.
 	 *     
 	 */
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 

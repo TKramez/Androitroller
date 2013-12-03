@@ -41,6 +41,7 @@ public class RemoteControlService extends Service {
 	 * @return Whether or not the service is connected. Always returns true on emulator.
 	 */
 	public boolean isConnected() {
+		//Log.e("TK", "isConnected always returns true."); return true;
 		return sock != null;
 	}
 	
